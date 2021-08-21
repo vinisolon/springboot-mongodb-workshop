@@ -33,6 +33,18 @@ public class UserService {
         repository.delete(findById(id));
     }
 
+    public User update(User userNewData) {
+        User existentUser = findById(userNewData.getId());
+        updateData(existentUser, userNewData);
+        return repository.save(existentUser);
+    }
+
+    private void updateData(User existentUser, User userNewData) {
+        existentUser.setName(userNewData.getName());
+        existentUser.setName(userNewData.getName());
+        existentUser.setEmail(userNewData.getEmail());
+    }
+
     /*
     Esse método pode ser implementado tanto na classe DTO quanto na de serviço.
     Foi escolhido a classe de serviço pois, dependendo da situação, para instanciar um User, será necessário
