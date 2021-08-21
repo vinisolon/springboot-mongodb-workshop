@@ -29,6 +29,10 @@ public class UserService {
         return repository.insert(user);
     }
 
+    public void delete(String id) {
+        repository.delete(findById(id));
+    }
+
     /*
     Esse método pode ser implementado tanto na classe DTO quanto na de serviço.
     Foi escolhido a classe de serviço pois, dependendo da situação, para instanciar um User, será necessário
