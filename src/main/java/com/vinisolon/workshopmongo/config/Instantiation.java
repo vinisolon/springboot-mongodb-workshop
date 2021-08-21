@@ -47,6 +47,10 @@ public class Instantiation implements CommandLineRunner {
 
         // Adiciona os posts na collection do MongoDB
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        // Adiciona as referencias a posts da Maria e salva a collection
+        maria.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(maria);
     }
 
 }
