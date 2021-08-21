@@ -1,5 +1,6 @@
 package com.vinisolon.workshopmongo.resources;
 
+import com.vinisolon.workshopmongo.domain.Post;
 import com.vinisolon.workshopmongo.domain.User;
 import com.vinisolon.workshopmongo.dto.UserDTO;
 import com.vinisolon.workshopmongo.services.UserService;
@@ -60,6 +61,12 @@ public class UserResource {
         service.update(user);
         // noContent retorna código 204
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPostsByUserId(@PathVariable String id) {
+        User user = service.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 
 }

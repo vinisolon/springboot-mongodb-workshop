@@ -1,6 +1,5 @@
 package com.vinisolon.workshopmongo.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 // MongoDB annotations
 @Document(collection = "user")
@@ -32,8 +30,13 @@ public class User implements Serializable {
 
     // @DBRef -> Referencia outra collection do MongoDB
     // lazy = true -> Não queremos carregar os posts automaticamente quando recuperarmos users da base
-    // final -> Não entrar no @AllArgsConstructor
     @DBRef(lazy = true)
-    final private List<Post> posts = new ArrayList();
+    private List<Post> posts = new ArrayList();
+
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 
 }
