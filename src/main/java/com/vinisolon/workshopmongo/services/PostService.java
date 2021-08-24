@@ -20,8 +20,14 @@ public class PostService {
         return post.orElseThrow(() -> new ObjectNotFoundException("Post not found."));
     }
 
+    // Comentado para testar a busca com @Query
+//    public List<Post> findByTitle(String title) {
+//        return repository.findByTitleContainsIgnoringCase(title);
+//    }
+
+    // Busca utilizando o @Query
     public List<Post> findByTitle(String title) {
-        return repository.findByTitleContainsIgnoringCase(title);
+        return repository.searchTitle(title);
     }
 
 }
